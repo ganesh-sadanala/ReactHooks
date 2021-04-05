@@ -1,23 +1,33 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function App() {
-  const [name, setName] = useState("jane");
-  const [admin, setAdmin] = useState(false);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    document.title = `Celebrate ${name}`;
-    console.log(`The name is: ${name}`);
-  }, [name, admin]);
+    fetch("https://api.github.com/users")
+      .then((res) => res.json())
+      .then((json) => setData(json));
 
-  useEffect(() => {
-    console.log(`The user is: ${admin ? "admin" : "not admin"}`);
-  });
-  return (
-    <section>
-      <p>Congratulations! {name}</p>
-      <button onClick={() => setName("Will")}>Change</button>
-      <p>{admin ? "logged in" : "not logged in"}</p>
-      <button onClick={() => setAdmin(true)}>Log In</button>
-    </section>
-  );
+    console.log("calling");
+  }, []);
+
+  if (data) {
+    return (
+      <div>
+        <ul>
+          {data.map((user) => {
+            return <li key={user.id}>{user.login}</li>;
+          })}
+        </ul>
+        <button
+          onClick={() => {
+            setData([]);
+          }}
+        >
+          Remove Data
+        </button>
+      </div>
+    );
+  }
+  return <p>No Users</p>;
 }

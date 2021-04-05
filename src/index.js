@@ -1,11 +1,10 @@
-import App from "./App";
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./App";
 
-const people = ["A", "B", "C"];
 ReactDOM.render(
   <React.StrictMode>
-    <App name="Galax" />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
