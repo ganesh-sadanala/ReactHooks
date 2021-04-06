@@ -1,10 +1,19 @@
-import React from "react";
+import React, { createContext } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
+export const TreesContext = createContext();
+
+const trees = [
+  { id: "1", type: "Maple" },
+  { id: "2", type: "Apple" },
+  { id: "3", type: "Baple" },
+  { id: "4", type: "Caple" },
+];
+
 ReactDOM.render(
-  <React.StrictMode>
+  <TreesContext.Provider value={{ trees }}>
     <App />
-  </React.StrictMode>,
+  </TreesContext.Provider>,
   document.getElementById("root")
 );
