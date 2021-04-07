@@ -1,8 +1,7 @@
-import { useContext } from "react";
-import { TreesContext } from ".";
+import { useTrees } from ".";
 
 export default function App() {
-  const { trees } = useContext(TreesContext);
+  const { trees } = useTrees();
 
   return (
     <>

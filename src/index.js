@@ -1,8 +1,8 @@
-import React, { createContext } from "react";
+import React, { createContext, useContext } from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 
-export const TreesContext = createContext();
+const TreesContext = createContext();
 
 const trees = [
   { id: "1", type: "Maple" },
@@ -11,6 +11,7 @@ const trees = [
   { id: "4", type: "Caple" },
 ];
 
+export const useTrees = () => useContext(TreesContext);
 ReactDOM.render(
   <TreesContext.Provider value={{ trees }}>
     <App />
